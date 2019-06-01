@@ -69,7 +69,11 @@ const App = () => {
             <>
               <Route component={Header} />
               <Route exact path="/" component={Content} />
-              <Route path="/evolution/:pokemon_id" component={Evolution} />
+              <Route
+                exact
+                path="/evolution/:pokemon_id"
+                component={Evolution}
+              />
               <Footer />
             </>
           ) : (

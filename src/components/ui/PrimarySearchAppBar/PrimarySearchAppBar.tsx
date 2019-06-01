@@ -56,6 +56,12 @@ function PrimarySearchAppBar({ history }: { history: any }) {
     });
   };
 
+  const gitLink = (
+    <a target="_blank" href="https://github.com/miro1091/pokemons">
+      GitHub
+    </a>
+  );
+
   const seachFocus = () => {
     history.push("/");
   };
@@ -93,7 +99,7 @@ function PrimarySearchAppBar({ history }: { history: any }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>GitHub</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{gitLink}</MenuItem>
     </Menu>
   );
 
@@ -105,7 +111,7 @@ function PrimarySearchAppBar({ history }: { history: any }) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>GitHub</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{gitLink}</MenuItem>
     </Menu>
   );
 
