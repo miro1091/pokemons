@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Context from "../../../reducer/Context";
 import PokemonCard from "../../ui/PokemonCard";
-import { PokemonCardProps } from "../../ui/PokemonCard/PokemonCard";
 import useStyles from "./content.style";
 
 const Content = () => {

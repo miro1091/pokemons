@@ -3,13 +3,13 @@ import axios from "axios";
 import uuid from "uuidv4";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { createBrowserHistory } from "history";
 import { ActionType } from "./reducer/type";
 import { reducer, initialState, IState, IAction } from "./reducer/reducer";
 import Context from "./reducer/Context";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Content from "./components/layout/Content";
+import Evolution from "./components/Evolution";
 import useStyles from "./app.style";
 
 const App = () => {
@@ -18,8 +18,6 @@ const App = () => {
     reducer,
     initialState
   );
-
-  const history = createBrowserHistory();
 
   useEffect(() => {
     axios.get("pokemon").then(response => {
@@ -32,7 +30,7 @@ const App = () => {
             const customPokemons: any[] = [];
             let customPokemonTypes: any[] = [];
 
-            res.map((item: any) => {
+            res.forEach((item: any) => {
               const types = item.data.types.map((type: any) => type.type.name);
               customPokemonTypes.push(...types);
 
@@ -82,13 +80,5 @@ const App = () => {
     </Router>
   );
 };
-
-function Evolution({ match }: { match: any }) {
-  return (
-    <div style={{ paddingTop: "70px" }}>
-      <h2>Evolution: {match.params.pokemon_id}</h2>
-    </div>
-  );
-}
 
 export default App;

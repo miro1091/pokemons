@@ -3,6 +3,9 @@ import red from "@material-ui/core/colors/red";
 
 export default makeStyles((theme: Theme) =>
   createStyles({
+    moreDetails: {
+      fontSize: "12px"
+    },
     card: {
       width: "300px",
       margin: "20px",
@@ -59,6 +62,47 @@ export default makeStyles((theme: Theme) =>
           border: "3px solid orange",
           borderRadius: "3px"
         }
+      }
+    },
+    pokedexData: {
+      marginTop: "8px",
+      "& > div": {
+        fontWeight: "bold"
+      },
+      "& table": {
+        width: "100%",
+
+        "& tr > td:first-child": {
+          textAlign: "right"
+        },
+        "& tr > td:last-child": {
+          textAlign: "left",
+          paddingLeft: "5px"
+        }
+      }
+    },
+    pokemonType: {
+      display: "flex",
+      itemsAlign: "center",
+      "& p": {
+        margin: "0 2px 0 2px",
+        padding: "3px 5px",
+        backgroundColor: "orange",
+        borderRadius: "5px",
+        border: "1px solid #000",
+        color: "#fff"
+      }
+    },
+    pokemonSpecies: {
+      fontWeight: 600,
+      textTransform: "capitalize"
+    },
+    bolderText: {
+      fontWeight: 600
+    },
+    pokemonAbilities: {
+      "& > p": {
+        margin: "0"
       }
     }
   })

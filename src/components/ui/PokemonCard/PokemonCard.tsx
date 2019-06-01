@@ -26,6 +26,8 @@ function PokemonCard({ data }: any) {
     setExpanded(!expanded);
   };
 
+  const heightToFt = data.height * 3.28084;
+  const restOfFt = (heightToFt - Math.floor(heightToFt)).toFixed(5);
   return (
     <Card className={classes.card}>
       <Link to={`evolution/${data.pokemon_id}`}>
@@ -45,7 +47,7 @@ function PokemonCard({ data }: any) {
       </Link>
 
       <CardActions disableSpacing>
-        <p>More details</p>
+        <p className={classes.moreDetails}>More details</p>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
@@ -87,20 +89,61 @@ function PokemonCard({ data }: any) {
                 </tbody>
               </table>
             </div>
-            <div>Pokedex data</div>
-            <div>
-              <p>Height: {data.height}</p>
-              <p>Weight: {data.weight}</p>
-              <p>Species: {data.species}</p>
-              {data.types.map((item: any, i: number) => (
-                <p key={i}>Type: {item}</p>
-              ))}
-              {data.abilities.map((item: any, i: number) => (
-                <p key={i}>
-                  Abilitie: {item.ability.name}{" "}
-                  {item.is_hidden ? "hidden" : "not"}
-                </p>
-              ))}
+            <div className={classes.pokedexData}>
+              <div>Pokédex data</div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>National N</td>
+                    <td>
+                      <strong>
+                        {data.pokemon_id.toString().padStart(3, "0")}
+                      </strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td className={classes.pokemonType}>
+                      {data.types.map((item: string, i: number) => (
+                        <p key={i}>{item}</p>
+                      ))}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Species</td>
+                    <td className={classes.pokemonSpecies}>
+                      {data.species} Pokemon
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Height</td>
+                    <td className={classes.bolderText}>{`${Math.floor(
+                      heightToFt
+                    )}'${(Number(restOfFt) * 12).toFixed(
+                      0
+                    )}'' (${data.height.toFixed(1)} m)`}</td>
+                  </tr>
+                  <tr>
+                    <td>Weight</td>
+                    <td className={classes.bolderText}>
+                      {`${(data.weight * 2.20462).toFixed(
+                        1
+                      )} lbs (${data.weight.toFixed(1)} kg)`}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Abilities</td>
+                    <td className={classes.pokemonAbilities}>
+                      {data.abilities.map((item: any, i: number) => (
+                        <p key={i}>
+                          {`${i + 1} ${item.ability.name} `}
+                          {item.is_hidden ? "(hidden)" : ""}
+                        </p>
+                      ))}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </CardContent>
         ) : (
